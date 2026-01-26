@@ -1,9 +1,7 @@
 <script setup>
 import SearchBar from '../components/SearchBar.vue'
 import NavTabs from '../components/NavTabs.vue'
-import CatCorner from '../components/CatCorner.vue'
 
-import catHead from '../assets/kumhead.png'
 import journal from '../assets/pen.png'
 
 const tabs = ['cyber journal', 'personal projects', 'about me']
@@ -26,8 +24,6 @@ const journalEntries = [
         <NavTabs :tabs="tabs" />
       </div>
     </header>
-
-    <CatCorner :src="catHead" alt="Cat Head" />
 
     <div class="journal-search">
       <SearchBar placeholder="search here" @admin-portal="emit('admin-portal')" />

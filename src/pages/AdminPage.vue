@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar.vue'
 import NavTabs from '../components/NavTabs.vue'
 import AdminCard from '../components/AdminCard.vue'
 import CatCorner from '../components/CatCorner.vue'
+import Navbar from '../components/Navbar.vue'
 
 import catHead from '../assets/kumhead.png'
 import logo from '../assets/kum.png'
@@ -26,11 +27,11 @@ const handleSignOut = () => {
 
 <template>
   <div class="admin-dashboard">
-    <nav class="admin-navbar">
-      <div class="admin-navbar-content">
+    <Navbar>
+      <template #left>
         <button class="admin-signout-btn" @click="handleSignOut">sign out</button>
-      </div>
-    </nav>
+      </template>
+    </Navbar>
 
     <main class="admin-page">
       <CatCorner :src="catHead" alt="Cat Head" />

@@ -305,6 +305,50 @@ button:focus-visible {
   letter-spacing: 0.5px;
 }
 
+.navbar {
+  background-color: #FFF7E4;
+  border-bottom: 2px solid #FFE8C1;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 0;
+}
+
+.navbar-content {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 25px;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Generic navbar sections */
+.navbar-left, .navbar-right, .navbar-center {
+  display: flex;
+  align-items: center;
+}
+.navbar-center {
+  flex: 1;
+  justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem 0;
+  }
+
+  .navbar-content {
+    padding: 0 1rem;
+  }
+
+  .admin-signout-btn {
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
+
 /* Admin Portal */
 .admin-portal-overlay {
   position: fixed;
@@ -494,25 +538,6 @@ button:focus-visible {
   flex-direction: column;
 }
 
-.admin-navbar {
-  background-color: #FFF7E4;
-  border-bottom: 2px solid #FFE8C1;
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 0;
-}
-
-.admin-navbar-content {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 25px;
-  padding: 0 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .admin-signout-btn {
   background: none;
   color: #1f1f1f;
@@ -534,21 +559,6 @@ button:focus-visible {
   .admin-signout-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .admin-navbar {
-    padding: 0.75rem 0;
-  }
-
-  .admin-navbar-content {
-    padding: 0 1rem;
-  }
-
-  .admin-signout-btn {
-    width: 100%;
-    padding: 0.5rem;
   }
 }
 
@@ -745,8 +755,8 @@ button:focus-visible {
 
 .journal-navbar {
   position: relative;
-  width: 100vw;
-  margin: 0 calc(-50vw + 50%) 1.5rem;
+  width: 100%;
+  margin: 0 0 1.5rem 0;
   padding: 0.75rem 1.5rem 1.25rem;
   background: #f6ebe9;
   border-bottom: 2px solid #FFE8C1;
