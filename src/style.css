@@ -351,10 +351,15 @@ button:focus-visible {
 /* Generic navbar sections */
 .navbar-left, .navbar-right, .navbar-center {
   display: flex;
-  flex: 1; /* Allow flexible sizing */
-  min-width: 0; /* Prevent flex items from overflowing */
-  align-items: flex-start;
+  flex: 1; 
+  min-width: 0; 
+  /* align-items: flex-start; */
   margin-top: -1rem;
+}
+
+.navbar-left {
+  gap: 4rem; 
+  justify-content: flex-start;
 }
 
 .navbar-center {
@@ -362,8 +367,9 @@ button:focus-visible {
 }
 
 .navbar-right {
-  gap: 4rem; /* Reduced from 3rem */
+  gap: 4rem; 
   justify-content: flex-end;
+  align-items: center;
 }
 
 @media (max-width: 480px) {
@@ -785,7 +791,7 @@ button:focus-visible {
   padding: 3rem 1.5rem;
 }
 
-.journal-title {
+.page-title {
   font-size: 4.5rem;
   font-weight: 900;
   letter-spacing: -0.02em;
@@ -808,6 +814,7 @@ button:focus-visible {
   line-height: 1;
   outline: none;
   position: relative;
+  white-space: nowrap;
   padding-bottom: 9px;
 }
 
@@ -833,6 +840,14 @@ button:focus-visible {
 
 .nav-button:focus {
   outline: none;
+}
+
+.nav-button.home-btn::after {
+  display: none;
+}
+
+.nav-button.home-btn:hover::after {
+  opacity: 0;
 }
 
 .nav-icon {
@@ -902,6 +917,87 @@ button:focus-visible {
 
   .admin-card-title {
     font-size: 1rem;
+  }
+}
+
+/* About page */
+.about-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.about-container {
+  display: flex;
+  margin-left: 1.5rem;
+  align-items: center;
+  gap: 2rem;
+  width: 95%;
+}
+
+.about-profile {
+  flex-shrink: 0;
+}
+
+.profile-zoom {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-image {
+  width: 322px;
+  height: 322px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  background-color: #e0e0e0;
+}
+
+.about-content {
+  flex: 1;
+}
+
+.about-greeting {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #1f1f1f;
+  font-weight: 500;
+}
+
+.about-name {
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 0.5rem 0 0 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #000;
+  max-width: 780px;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .profile-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-name {
+    font-size: 3rem;
   }
 }
 

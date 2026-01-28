@@ -28,14 +28,14 @@ const journalEntries = [
   <div class="dashboard">
     <Navbar>
       <template #left>
-        <h1 class="journal-title">cyber journal</h1>
+        <h1 class="page-title">cyber journal</h1>
       </template>
       <template #center>
       </template>
       <template #right>
-        <button class="nav-button" @click="navigate('projects')">projects</button>
+        <button class="nav-button" @click="navigate('projects')">personal projects</button>
         <button class="nav-button" @click="navigate('about')">about me</button>
-        <button class="nav-button" @click="navigate('home')">
+        <button class="nav-button home-btn" @click="navigate('home')">
           <img :src="logo" alt="home" class="nav-icon" />
         </button>
       </template>

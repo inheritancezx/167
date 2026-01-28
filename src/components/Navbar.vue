@@ -8,7 +8,7 @@ const props = defineProps({
   <nav class="navbar">
     <div class="navbar-content">
       <div class="navbar-left">
-        <slot name="left">{{ props.title }}</slot>
+        <slot name="left" />
       </div>
       <div class="navbar-center">
         <slot name="center" />
