@@ -11,6 +11,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --navbar-bg-color: #FFF7E4;
+  --navbar-border-color: #FFE8C1;
 }
 
 a {
@@ -325,13 +328,18 @@ button:focus-visible {
 }
 
 .navbar {
-  background-color: #FFF7E4;
-  border-bottom: 2px solid #FFE8C1;
+  background-color: var(--navbar-bg-color);
+  border-bottom: 2px solid var(--navbar-border-color);
   height: 35px;
   padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 0;
+}
+
+.dashboard.user-page .navbar {
+  --navbar-bg-color: #FBEFEF;
+  --navbar-border-color: #FFE1E1;
 }
 
 .navbar-content {

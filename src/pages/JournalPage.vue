@@ -25,7 +25,7 @@ const journalEntries = [
 </script>
 
 <template>
-  <div class="dashboard">
+  <div class="dashboard user-page">
     <Navbar>
       <template #left>
         <h1 class="page-title">cyber journal</h1>

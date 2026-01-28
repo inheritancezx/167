@@ -14,7 +14,7 @@ const navigate = (page) => {
 </script>
 
 <template>
-  <div class="dashboard">
+  <div class="dashboard user-page">
     <Navbar>
       <template #left>
         <button class="nav-button" @click="navigate('journal')">cyber journal</button>
