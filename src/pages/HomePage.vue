@@ -15,18 +15,20 @@ const emit = defineEmits(['admin-portal'])
 </script>
 
 <template>
-  <main class="page">
-    <HeadingTitle text="welcome!" />
-
-    <div class="page-content">
+  <main class="home-page">
+    <div class="home-sticky">
+      <HeadingTitle text="welcome!" />
       <CatCorner :src="catHead" alt="Cat Head" />
       <SearchBar placeholder="search here" @admin-portal="emit('admin-portal')" class="home-search" />
       <NavTabs :tabs="tabs" />
+    </div>
 
+    <div class="home-scrollable">
       <section class="cards">
         <GlassCard variant="yellow" title="Started a new posisition!" :icon="logo" />
         <GlassCard variant="blue" title="Project <name> Update: new features!!" :icon="project" />
         <GlassCard variant="green" title="<journal name> just published!" :icon="journal" />
+          <GlassCard variant="blue" title="Project <name> Update: new features!!" :icon="project" />
       </section>
     </div>
   </main>

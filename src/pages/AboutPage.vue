@@ -1,15 +1,23 @@
 <script setup>
-import { useRouter } from 'vue-router'
+import { usePageNavigation } from '../composables/usePageNavigation'
 import Navbar from '../components/Navbar.vue'
+import ProfileSection from '../components/ProfileSection.vue'
 
 import logo from '../assets/kum.png'
 import profilePic from '../assets/profile.jpg'
 
-const router = useRouter()
+const { navigate } = usePageNavigation()
 const emit = defineEmits(['admin-portal'])
 
-const navigate = (page) => {
-  router.push({ name: page })
+const navPages = [
+  { name: 'journal', label: 'cyber journal' },
+  { name: 'projects', label: 'personal projects' }
+]
+
+const profileData = {
+  image: profilePic,
+  name: 'Fayza Aqila Bachtiar',
+  greeting: "hi! I'm"
 }
 </script>
 
@@ -17,8 +25,14 @@ const navigate = (page) => {
   <div class="dashboard user-page">
     <Navbar>
       <template #left>
-        <button class="nav-button" @click="navigate('journal')">cyber journal</button>
-        <button class="nav-button" @click="navigate('projects')">personal projects</button>
+        <button 
+          v-for="page in navPages" 
+          :key="page.name"
+          class="nav-button" 
+          @click="navigate(page.name)"
+        >
+          {{ page.label }}
+        </button>
       </template>
       <template #center>
       </template>
@@ -31,17 +45,11 @@ const navigate = (page) => {
     </Navbar>
 
     <main class="about-page">
-      <div class="about-container">
-        <div class="about-profile">
-          <div class="profile-zoom">
-            <img :src="profilePic" alt="profile" class="profile-image" />
-          </div>
-        </div>
-        <div class="about-content">
-          <p class="about-greeting">hi! I'm</p>
-          <h1 class="about-name">Fayza Aqila Bachtiar</h1>
-        </div>
-      </div>
+      <ProfileSection 
+        :image="profileData.image"
+        :name="profileData.name"
+        :greeting="profileData.greeting"
+      />
     </main>
   </div>
 </template>
