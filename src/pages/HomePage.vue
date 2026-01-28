@@ -3,7 +3,9 @@ import HeadingTitle from '../components/HeadingTitle.vue'
 import SearchBar from '../components/SearchBar.vue'
 import NavTabs from '../components/NavTabs.vue'
 import GlassCard from '../components/GlassCard.vue'
+import CatCorner from '../components/CatCorner.vue'
 
+import catHead from '../assets/kumhead.png'
 import logo from '../assets/kum.png'
 import journal from '../assets/pen.png'
 import project from '../assets/puzzle.png'
@@ -17,7 +19,8 @@ const emit = defineEmits(['admin-portal'])
     <HeadingTitle text="welcome!" />
 
     <div class="page-content">
-      <SearchBar placeholder="search here" @admin-portal="emit('admin-portal')" />
+      <CatCorner :src="catHead" alt="Cat Head" />
+      <SearchBar placeholder="search here" @admin-portal="emit('admin-portal')" class="home-search" />
       <NavTabs :tabs="tabs" />
 
       <section class="cards">

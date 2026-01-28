@@ -11,7 +11,7 @@ const props = defineProps({
         <slot name="left">{{ props.title }}</slot>
       </div>
       <div class="navbar-center">
-        <slot></slot>
+        <slot name="center" />
       </div>
       <div class="navbar-right">
         <slot name="right" />

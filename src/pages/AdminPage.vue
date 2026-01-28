@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import HeadingTitle from '../components/HeadingTitle.vue'
-import SearchBar from '../components/SearchBar.vue'
-import NavTabs from '../components/NavTabs.vue'
 import AdminCard from '../components/AdminCard.vue'
 import CatCorner from '../components/CatCorner.vue'
 import Navbar from '../components/Navbar.vue'
@@ -26,7 +24,7 @@ const handleSignOut = () => {
 </script>
 
 <template>
-  <div class="admin-dashboard">
+  <div class="dashboard">
     <Navbar>
       <template #left>
         <button class="admin-signout-btn" @click="handleSignOut">sign out</button>

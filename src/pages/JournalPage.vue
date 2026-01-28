@@ -1,11 +1,19 @@
 <script setup>
+import { useRouter } from 'vue-router'
 import SearchBar from '../components/SearchBar.vue'
-import NavTabs from '../components/NavTabs.vue'
+import Navbar from '../components/Navbar.vue'
+import GlassCard from '../components/GlassCard.vue'
 
 import journal from '../assets/pen.png'
+import logo from '../assets/kum.png'
 
+const router = useRouter()
 const tabs = ['cyber journal', 'personal projects', 'about me']
-const emit = defineEmits(['admin-portal'])
+const emit = defineEmits(['admin-portal', 'navigate'])
+
+const navigate = (page) => {
+  router.push({ name: page })
+}
 
 const journalEntries = [
   { id: 1, title: '<journal name> just published!' },
@@ -17,23 +25,28 @@ const journalEntries = [
 </script>
 
 <template>
-  <main class="journal-page">
-    <header class="journal-navbar">
-      <h1 class="journal-title">cyber journal</h1>
-      <div class="journal-nav-tabs">
-        <NavTabs :tabs="tabs" />
-      </div>
-    </header>
+  <div class="dashboard">
+    <Navbar>
+      <template #left>
+        <h1 class="journal-title">cyber journal</h1>
+      </template>
+      <template #center>
+      </template>
+      <template #right>
+        <button class="nav-button" @click="navigate('projects')">projects</button>
+        <button class="nav-button" @click="navigate('about')">about me</button>
+        <button class="nav-button" @click="navigate('home')">
+          <img :src="logo" alt="home" class="nav-icon" />
+        </button>
+      </template>
+    </Navbar>
 
-    <div class="journal-search">
-      <SearchBar placeholder="search here" @admin-portal="emit('admin-portal')" />
-    </div>
+    <main class="journal-page">
+        <SearchBar placeholder="search here" @admin-portal="emit('admin-portal')" />
 
-    <section class="journal-list">
-      <article v-for="entry in journalEntries" :key="entry.id" class="journal-card">
-        <img :src="journal" class="journal-card-icon" alt="journal icon" />
-        <div class="journal-card-text">{{ entry.title }}</div>
-      </article>
-    </section>
-  </main>
+        <section class="cards">
+            <GlassCard v-for="entry in journalEntries" :key="entry.id" variant="green" :icon="journal" :title="entry.title" />
+        </section>
+    </main>
+  </div>
 </template>
