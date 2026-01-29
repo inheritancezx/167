@@ -131,9 +131,10 @@ button:focus-visible {
 
 .dashboard {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .welcome-title {
@@ -184,7 +185,7 @@ button:focus-visible {
   gap: 1rem;
   margin-top: 1rem;
   padding: 1rem 1.25rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .glass-clear {
   background: rgba(255, 255, 255, 0.18);
@@ -323,7 +324,7 @@ button:focus-visible {
   height: 279px;
   overflow: hidden;
   pointer-events: none;
-  z-index: 1;
+  z-index: 100;
 }
 
 @media (max-width: 1024px) {
@@ -847,6 +848,38 @@ button:focus-visible {
   max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px);
+}
+
+.journal-page .search-bar {
+  flex-shrink: 0;
+  margin-bottom: 2rem;
+}
+
+.journal-page .cards {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.journal-page .cards::-webkit-scrollbar {
+  width: 8px;
+}
+
+.journal-page .cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.journal-page .cards::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.journal-page .cards::-webkit-scrollbar-thumb:hover {
+  background: #999;
 }
 
 .page-title {
@@ -946,8 +979,10 @@ button:focus-visible {
 @media (max-width: 480px) {
   .journal-page {
     padding: 1.75rem 1rem 2.5rem;
+    height: calc(100vh - 80px);
   }
 }
+
 
 @media (max-width: 480px) {
   .admin-title {
@@ -1056,6 +1091,427 @@ button:focus-visible {
 
   .about-name {
     font-size: 3rem;
+  }
+}
+
+/* Admin Journal Page */
+.admin-journal-main {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-journal-container {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1.5rem 1.5rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .admin-journal-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-journal-container {
+    flex-direction: column;
+    padding: 1rem 0.75rem;
+  }
+}
+
+/* Journal Form Component */
+.new-journal-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1f1f1f;
+}
+
+.journal-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-height: 350px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+}
+
+.journal-input {
+  padding: 0.75rem;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  font-size: 1.1rem;
+  background: transparent;
+  color: #1f1f1f;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.journal-input:focus {
+  border-bottom-color: #8fa59d;
+}
+
+.journal-title-input {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.journal-textarea {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  background: transparent;
+  color: #1f1f1f;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  resize: none;
+}
+
+.journal-textarea::placeholder {
+  color: #999;
+}
+
+.journal-editor-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background: #FFF0E8;
+  border-radius: 12px;
+  margin-top: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.editor-left,
+.editor-right {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.editor-button {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: transform 0.2s ease;
+  position: relative;
+  outline: none;
+}
+
+.editor-button:focus {
+  outline: none;
+}
+
+.editor-button:hover {
+  transform: scale(1.2);
+}
+
+.editor-button[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  font-weight: 500;
+}
+
+.editor-button[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.editor-icon {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.format-menu-container {
+  position: relative;
+}
+
+.format-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  z-index: 10;
+}
+
+.format-option {
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+}
+
+.format-option:hover {
+  background-color: #f0f0f0;
+}
+
+@media (max-width: 1024px) {
+  .journal-form {
+    min-height: 300px;
+  }
+
+  .journal-editor-bar {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .new-journal-section {
+    flex: 1;
+  }
+
+  .journal-form {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .journal-form {
+    padding: 1rem;
+  }
+}
+
+/* Admin Project Page */
+.admin-project-main {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-project-container {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Project Form Component */
+.new-project-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+.project-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: rgba(173, 181, 204, 0.35);
+
+  .project-form-content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .project-form-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .project-form-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .project-form-content::-webkit-scrollbar-thumb {
+    background: #d0d0d0;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+
+  .project-form-content::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  min-height: 350px;
+}
+
+.project-input {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(173, 181, 204, 0.5);
+  font-size: 1.1rem;
+  color: #1f1f1f;
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+
+.project-input::placeholder {
+  color: #666;
+}
+
+.project-input:focus {
+  background-color: rgba(173, 181, 204, 0.7);
+}
+
+.project-textarea {
+  min-height: 210px;
+  padding: 1rem;
+  border: none;
+  background: rgba(173, 181, 204, 0.5);
+  border-radius: 8px;
+  color: #1f1f1f;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  resize: none;
+}
+
+.project-textarea::placeholder {
+  color: #666;
+}
+
+.project-textarea:focus {
+  background-color: rgba(173, 181, 204, 0.7);
+}
+
+.project-form::-webkit-scrollbar {
+  width: 8px;
+}
+
+.project-form::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-form::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.project-form::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.cover-upload-button {
+  padding: 1rem;
+  background: rgba(173, 181, 204, 0.5);
+  border: 2px dashed rgba(173, 181, 204, 0.8);
+  border-radius: 8px;
+  cursor: pointer;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cover-upload-button:hover {
+  background: rgba(173, 181, 204, 0.7);
+  border-color: rgba(173, 181, 204, 1);
+}
+
+.cover-placeholder {
+  color: #666;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.cover-preview {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .admin-project-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .new-project-section {
+    flex: 1;
+  }
+
+  .project-form {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-project-container {
+    flex-direction: column;
+    padding: 1rem 0.75rem;
+  }
+
+  .project-list-section {
+    display: none;
+  }
+
+  .project-form {
+    padding: 1rem;
   }
 }
 
